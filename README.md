@@ -1,4 +1,4 @@
-##Explanation and design decisions
+## Explanation and design decisions
 
 I have implemented all the three tasks. The solution consists of 7 projects.
 
@@ -16,13 +16,13 @@ I enumerated the projects in the same order I implemented them through the week.
 
 **Disclaimer: I am on a Mac, so I am using Rider as my IDE and I have used XUnit as my testing framework (as I have experience with XUnit only)**
 
-###HQPlus.Data
+### HQPlus.Data
 Consists of Data Model classes along with extension methods which are shared between HQPlus.Task3.Api and HQPlus.Task2.
 
-###HQPlus.Task3.Api
+### HQPlus.Task3.Api
 It is a REST web api which exposes a GET endpoint http://localhost:5000/api/hotels/{id} (Versioning not implemented as discussed)
 
-####Endpoint Input
+#### Endpoint Input
 The endpoint accepts two parameters:
 1. id - passed as a path variable
 2. arrivalDate - passed as a query parameter
@@ -31,7 +31,7 @@ The endpoint accepts two parameters:
 1. The id is represented as a long value in the api.
 2. The arrivalDate must be in ISO format viz. yyyy-MM-dd. If the date is not given in this format the api will respond with 400 bad request status.
 
-####Possible Outputs
+#### Possible Outputs
 1. BadRequest - if the input parameters viz. are in incorrect format (see Remarks above)
 2. NotFound - if there is not hotel for given id
 3. Ok with response json - filters the hotel and hotelRates for given id and arrivalDate.
@@ -39,12 +39,12 @@ The endpoint accepts two parameters:
 **Remarks:**
 The response json is in the same format as in the hotelsrates.json
 
-###HQPlus.Task3.Tests
+### HQPlus.Task3.Tests
 Consists of Unit tests and Integration tests.
 1. The unit tests make sure that we are filtering the data correctly (in this case the storage layer is the hotelsrates.json)
 2. Integration tests consists of api endpoint tests which make sure that correct output status and response is given for all scenarios
 
-###HQPlus.Task2
+### HQPlus.Task2
 It is a background worker service which produces the required Excel report.
 
 **Remarks:**
@@ -74,13 +74,13 @@ It is a background worker service which produces the required Excel report.
    There were some number format issues as well. Because of this I had to resort to some 4-5 hacky lines of code. These bugs may
    or may not be applicable to Windows machines.
    
-###HQPlus.Task2.Tests
+### HQPlus.Task2.Tests
 1. Unit tests make sure that the data is read correctly from hotelsrates.json file and they make sure that the hotelRate objects
    are correctly mapped to excel rows.
 2. Integration tests make sure that excel sheet is generated with correct data and the interaction b/w Worker service and the report
    generator.
    
-###HQPlus.Task1
+### HQPlus.Task1
 It is a class library which implements a Booking.com data extractor.
 
 **Remarks:**
@@ -104,7 +104,8 @@ It is a class library which implements a Booking.com data extractor.
 
 5. The project uses AngleSharp library for DOM parsing.
 
-###HQPlus.Task1.Tests
+### HQPlus.Task1.Tests
+
 I have implemented End to End tests only which test the public behavior of `IBookingDotComScraper`. I did not implement fine-grained unit tests because scrapers can often break depending on DOM changes. One should be pragmatic and measure the value to maintainability ratio of tests. In this case, I went ahead with End to End tests only.
    
 
