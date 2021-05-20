@@ -34,7 +34,7 @@ namespace HQPlus.Task2.Tests.IntegrationTests {
             await excelReportGenerator.GenerateReportAsync();
 
             hotelRatesRepoMock.Verify(m => m.GetAllAsync(), Times.Once);
-            File.Exists(excelFilePath);
+            File.Exists(excelFilePath).Should().Be(true);
             AssertExcelFile(excelFilePath);
         }
 

@@ -74,6 +74,10 @@ It is a background worker service which produces the required Excel report.
    There were some number format issues as well. Because of this I had to resort to some 4-5 hacky lines of code. These bugs may
    or may not be applicable to Windows machines.
    
+#### Answer to optional architecture question
+
+We can use a Cron job on top of background worker service. Popular cron jobs libraries are Quartz.net and Hangfire.
+   
 ### HQPlus.Task2.Tests
 1. Unit tests make sure that the data is read correctly from hotelsrates.json file and they make sure that the hotelRate objects
    are correctly mapped to excel rows.
